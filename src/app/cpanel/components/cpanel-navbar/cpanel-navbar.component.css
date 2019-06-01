@@ -1,0 +1,39 @@
+@import '../../cpanel.component.css';
+
+.dropdown-toggle::after {
+    display:none;
+}
+
+.show-pointer{
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.show-pointer:hover{
+    background:#18bc9c; 
+}
+
+/* MAriana */
+.botonSidebar{
+    background-color: #343a40;
+    border: 0px;
+    cursor: pointer;
+}
+
+.menuIcon{
+    color: white !important;
+}
+
+.Show{
+    display: none;
+}
+
+.options{
+    font-size: large;
+}
+
+@media (max-width: 768px){
+    .Show{
+        display: block;
+    }
+}

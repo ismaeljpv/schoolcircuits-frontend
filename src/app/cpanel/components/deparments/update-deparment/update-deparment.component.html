@@ -1,0 +1,39 @@
+<div class="container">
+  <h4 class="mb-4">Actualizar Departamento</h4>
+  <form [formGroup]="updateDeparmentForm" (ngSubmit)="postData(updateDeparmentForm)">
+
+     
+        <div class="form-row">
+            <div class="form-group col-md-6 mb-4">
+                <label>Plan de Acción</label>
+                <div>
+                  <input formControlName="plan" type="text" class="form-control" readonly>
+                  <div *ngIf="updateDeparmentForm.controls['plan'].touched && !updateDeparmentForm.controls['plan'].valid" class="alert alert-danger">
+                    <span *ngIf="updateDeparmentForm.controls['plan'].hasError('required')">
+                      Este campo es requerido
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-md-6 mb-4">
+                <label>Descripción</label>
+                <div>
+                  <input formControlName="descripcion" type="text" class="form-control">
+                  <div *ngIf="updateDeparmentForm.controls['descripcion'].touched && !updateDeparmentForm.controls['descripcion'].valid" class="alert alert-danger">
+                    <span *ngIf="updateDeparmentForm.controls['descripcion'].hasError('required')">
+                      Este campo es requerido
+                    </span>
+                  </div>
+                </div>
+              </div>
+              
+      </div>
+      
+   
+
+        <div class="row justify-content-center m-4">
+           
+            <button class="btn btn-success" [disabled]='!updateDeparmentForm.valid' value="Post Data">Enviar</button>
+        </div>
+        </form>
+      </div>

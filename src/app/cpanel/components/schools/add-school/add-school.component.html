@@ -1,0 +1,307 @@
+
+<div class="container">
+        <h4 class="mb-4">Agregar Nuevo Plantel</h4>
+        <form [formGroup]="addSchoolForm" (ngSubmit)="postData(addSchoolForm)">
+    
+            <div class="form-row">
+                <div class="form-group col-md-6 ">
+                    <label>Nombre del Plantel</label>
+                    <div>
+                      <input formControlName="plantel" type="text" class="form-control" >
+                      <div *ngIf="addSchoolForm.controls['plantel'].touched && !addSchoolForm.controls['plantel'].valid" class="alert alert-danger">
+                        <span *ngIf="addSchoolForm.controls['plantel'].hasError('required')">
+                          Este campo es requerido
+                        </span>
+                      </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 mb-4">
+                    <label>C&oacute;digo Administrativo</label>
+                    <div>
+                      <input formControlName="codigoAdmin" type="text" class="form-control" (keypress)="onlyNumbers($event)" minlength="9" maxlength="9" pattern="[0-9]+">
+                      <div *ngIf="addSchoolForm.controls['codigoAdmin'].touched && !addSchoolForm.controls['codigoAdmin'].valid" class="alert alert-danger">
+                        <span *ngIf="addSchoolForm.controls['codigoAdmin'].hasError('required')">
+                          Este campo es requerido
+                        </span>
+                        <span *ngIf="addSchoolForm.controls['codigoAdmin'].hasError('minlength') || addSchoolForm.controls['codigoAdmin'].hasError('maxlength')">
+                          Longitud Inválida (9 Dígitos Requeridos)
+                        </span>
+                        <span *ngIf="addSchoolForm.controls['codigoAdmin'].hasError('pattern')">
+                          Solo Números
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6 mb-4">
+                    <label>C&oacute;digo DEA</label>
+                    <div>
+                      <input formControlName="codigoDea" type="text" class="form-control" minlength="9" maxlength="9" pattern="[a-zA-Z0-9-]+" >
+                      <div *ngIf="addSchoolForm.controls['codigoDea'].touched && !addSchoolForm.controls['codigoDea'].valid" class="alert alert-danger">
+                        <span *ngIf="addSchoolForm.controls['codigoDea'].hasError('required')">
+                          Este campo es requerido
+                        </span>
+                        <span *ngIf="addSchoolForm.controls['codigoDea'].hasError('minlength') || addSchoolForm.controls['codigoDea'].hasError('maxlength')">
+                          Longitud Inválida (11 Dígitos Requeridos)
+                        </span>
+                        <span *ngIf="addSchoolForm.controls['codigoDea'].hasError('pattern')">
+                          Solo Números y Letras
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-6 mb-4"> 
+                      <label>C&oacute;digo Estadístico</label>
+                      <div>
+                        <input formControlName="codigoEstadistico" type="text" class="form-control" (keypress)="onlyNumbers($event)" minlength="6" maxlength="6" pattern="[0-9]+" >
+                        <div *ngIf="addSchoolForm.controls['codigoEstadistico'].touched && !addSchoolForm.controls['codigoEstadistico'].valid" class="alert alert-danger">
+                          <span *ngIf="addSchoolForm.controls['codigoEstadistico'].hasError('required')">
+                            Este campo es requerido
+                          </span>
+                          <span *ngIf="addSchoolForm.controls['codigoEstadistico'].hasError('minlength') || addSchoolForm.controls['codigoEstadistico'].hasError('maxlength')">
+                            Longitud Inválida (6 Dígitos Requeridos)
+                          </span>
+                          <span *ngIf="addSchoolForm.controls['codigoEstadistico'].hasError('pattern')">
+                            Solo Números
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+            </div>
+            <div class="form-row">
+                    <div class="form-group col-md-6 mb-4">
+                            <label>C&oacute;digo Electoral</label>
+                            <div>
+                              <input formControlName="codigoElectoral" type="text" class="form-control" (keypress)="onlyNumbers($event)" minlength="8" maxlength="8" pattern="[0-9]+">
+                              <div *ngIf="addSchoolForm.controls['codigoElectoral'].touched && !addSchoolForm.controls['codigoElectoral'].valid" class="alert alert-danger">
+                                <span *ngIf="addSchoolForm.controls['codigoElectoral'].hasError('required')">
+                                  Este campo es requerido
+                                </span>
+                                <span *ngIf="addSchoolForm.controls['codigoElectoral'].hasError('minlength') || addSchoolForm.controls['codigoElectoral'].hasError('maxlength')">
+                                  Longitud Inválida (8 Dígitos Requeridos)
+                                </span>
+                                <span *ngIf="addSchoolForm.controls['codigoElectoral'].hasError('pattern')">
+                                  Solo Números
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+      
+                          <div class="form-group col-md-6 mb-4">
+                            <label>RIF</label>
+                            <div>
+                              <input formControlName="rif" type="text" class="form-control" pattern="([J]{1})[-]{1}([0-9]{9})" placeholder="J-0112111211">
+                              <div *ngIf="addSchoolForm.controls['rif'].touched && !addSchoolForm.controls['rif'].valid" class="alert alert-danger">
+                                <span *ngIf="addSchoolForm.controls['rif'].hasError('required')">
+                                  Este campo es requerido
+                                </span>
+                                <span *ngIf="addSchoolForm.controls['rif'].hasError('pattern')">
+                                 Formato Inválido
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                 </div>
+              <div class="form-row">
+                   
+              <div class="form-group col-md-6 mb-4">
+                <label>Direcci&oacute;n</label>
+                <div>
+                  <input formControlName="direccion" type="text" class="form-control">
+                  <div *ngIf="addSchoolForm.controls['direccion'].touched && !addSchoolForm.controls['direccion'].valid" class="alert alert-danger">
+                    <span *ngIf="addSchoolForm.controls['direccion'].hasError('required')">
+                      Este campo es requerido
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-md-6 mb-4">
+                <label>PEIC</label>
+                <div>
+                  <input formControlName="peicLema" type="text" class="form-control" (keypress)="alphaWithSpace($event)">
+                  <div *ngIf="addSchoolForm.controls['peicLema'].touched && !addSchoolForm.controls['peicLema'].valid" class="alert alert-danger">
+                    <span *ngIf="addSchoolForm.controls['peicLema'].hasError('required')">
+                      Este campo es requerido
+                    </span>
+                    <span *ngIf="addSchoolForm.controls['peicLema'].hasError('pattern')">
+                      Formato Inválido
+                    </span>
+                  </div>
+                </div>
+              </div>
+              </div>
+              <div class="form-row">
+                   
+                <div class="form-group col-md-6 mb-4">
+                  <label>Año de Fundación</label>
+                  <div>
+                    <input formControlName="anoFundacion" type="number" class="form-control" min="1800" max="2019">
+                    <div *ngIf="addSchoolForm.controls['anoFundacion'].touched && !addSchoolForm.controls['anoFundacion'].valid" class="alert alert-danger">
+                      <span *ngIf="addSchoolForm.controls['anoFundacion'].hasError('required')">
+                        Este campo es requerido
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group col-md-6 mb-4">
+                  <label class="col-form-label"> ¿Es centro de votaci&oacute;n? </label>
+                  <div class="col-xs-12">
+                    <select class="form-control" formControlName="centroVotacion">
+                      <option disabled="disabled">Seleccionar</option>
+                      <option value="SI">SI</option>
+                      <option value="NO">NO</option>
+                    </select>
+                    <div *ngIf="addSchoolForm.controls['centroVotacion'].touched && !addSchoolForm.controls['centroVotacion'].valid"  class="alert alert-danger">
+                      <span *ngIf="addSchoolForm.controls['centroVotacion'].hasError('required')">
+                        Este campo es requerido
+                      </span>
+                    </div>
+                  </div>    
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6 mb-4">
+                    <label class="col-form-label"> ¿Posee Registro en el SIGE? </label>
+                    <div class="col-xs-12">
+                      <select class="form-control" formControlName="sige">
+                        <option disabled="disabled">Seleccionar</option>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                      </select>
+                      <div *ngIf="addSchoolForm.controls['sige'].touched && !addSchoolForm.controls['sige'].valid"  class="alert alert-danger">
+                        <span *ngIf="addSchoolForm.controls['sige'].hasError('required')">
+                          Este campo es requerido
+                        </span>
+                      </div>
+                    </div>    
+                    </div>
+                    <div class="form-group col-md-6 mb-4">
+                      <label class="col-form-label"> Dependencias </label>
+                      <div class="col-xs-12">
+                        <select class="form-control" formControlName="dependencias">
+                          <option disabled="disabled">Seleccionar</option>
+                          <option value="NACIONAL">NACIONAL</option>
+                          <option value="ESTADAL">ESTADAL</option>
+                          <option value="PRIVADA">PRIVADA</option>
+                        </select>
+                        <div *ngIf="addSchoolForm.controls['dependencias'].touched && !addSchoolForm.controls['dependencias'].valid"  class="alert alert-danger">
+                          <span *ngIf="addSchoolForm.controls['dependencias'].hasError('required')">
+                            Este campo es requerido
+                          </span>
+                        </div>
+                      </div>    
+                      </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6 mb-4">
+                    <label class="col-form-label"> Niveles </label>
+                    <div class="col-xs-12">
+                      <select class="form-control" formControlName="niveles">
+                        <option disabled="disabled">Seleccionar</option>
+                        <option value="INICIAL">INICIAL</option>
+                        <option value="PRIMARIA">PRIMARIA</option>
+                        <option value="MEDIA GENERAL">MEDIA GENERAL</option>
+                        <option value="MEDIA TECNICA">MEDIA TECNICA</option>
+                        <option value="INI / PRI">INI / PRI</option>
+                        <option value="PRI / MED">PRI / MED</option>
+                        <option value="INI / PRI / MED">INI / PRI / MED</option>
+                      </select>
+                      <div *ngIf="addSchoolForm.controls['niveles'].touched && !addSchoolForm.controls['niveles'].valid"  class="alert alert-danger">
+                        <span *ngIf="addSchoolForm.controls['niveles'].hasError('required')">
+                          Este campo es requerido
+                        </span>
+                      </div>
+                    </div>    
+                    </div>
+                    <div class="form-group col-md-6 mb-4">
+                      <label class="col-form-label"> Condici&oacute;n del Inmueble </label>
+                      <div class="col-xs-12">
+                        <select class="form-control" formControlName="condInmueble">
+                          <option disabled="disabled">Seleccionar</option>
+                          <option value="PROPIO">PROPIO</option>
+                          <option value="ARRENDADO">ARRENDADO</option>
+                          <option value="COMODATO">COMODATO</option>
+                        </select>
+                        <div *ngIf="addSchoolForm.controls['condInmueble'].touched && !addSchoolForm.controls['condInmueble'].valid"  class="alert alert-danger">
+                          <span *ngIf="addSchoolForm.controls['condInmueble'].hasError('required')">
+                            Este campo es requerido
+                          </span>
+                        </div>
+                      </div>    
+                      </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6 mb-4">
+                    <label>Latitud</label>
+                    <div>
+                      <input formControlName="latitud" type="text" class="form-control" pattern="^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$">
+                      <div *ngIf="addSchoolForm.controls['latitud'].touched && !addSchoolForm.controls['latitud'].valid" class="alert alert-danger">
+                        <span *ngIf="addSchoolForm.controls['latitud'].hasError('required')">
+                          Este campo es requerido
+                        </span>
+                        <span *ngIf="addSchoolForm.controls['latitud'].hasError('pattern')">
+                          Formato Inválido
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-6 mb-4">
+                    <label>Longitud</label>
+                    <div>
+                      <input formControlName="longitud" type="text" class="form-control" pattern="^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$">
+                      <div *ngIf="addSchoolForm.controls['longitud'].touched && !addSchoolForm.controls['longitud'].valid" class="alert alert-danger">
+                        <span *ngIf="addSchoolForm.controls['longitud'].hasError('required')">
+                          Este campo es requerido
+                        </span>
+                        <span *ngIf="addSchoolForm.controls['longitud'].hasError('pattern')">
+                          Formato Inválido
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group mb-4">
+                  <label class="col-form-label"> Circuito </label>
+                  <div class="col-xs-12">
+                    <select class="form-control" formControlName="circuito">
+                      <option disabled="disabled">Seleccionar</option>
+                     <option *ngFor="let circuito of circuitos" value="{{ circuito.idcircuito }}">{{ circuito.nombrecircuital }}</option>
+                    </select>
+                    <div *ngIf="addSchoolForm.controls['circuito'].touched && !addSchoolForm.controls['circuito'].valid"  class="alert alert-danger">
+                      <span *ngIf="addSchoolForm.controls['circuito'].hasError('required')">
+                        Este campo es requerido
+                      </span>
+                    </div>
+                  </div>    
+              </div>
+                    <div class="form-group mb-4">
+                        <label>Observaciones</label>
+                        <div>
+                          <textarea formControlName="observaciones" type="text" class="form-control"></textarea>
+                          <div *ngIf="addSchoolForm.controls['observaciones'].touched && !addSchoolForm.controls['observaciones'].valid" class="alert alert-danger">
+                            <span *ngIf="addSchoolForm.controls['observaciones'].hasError('required')">
+                              Este campo es requerido
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group mb-4">
+                          <div id="preview"></div>
+                        <label>Logo</label>
+                        <div>
+                          <input formControlName="logo" type="file" (change)="getimg($event)" accept="image/*">
+                          <div *ngIf="addSchoolForm.controls['logo'].touched && !addSchoolForm.controls['logo'].valid" class="alert alert-danger">
+                            <span *ngIf="addSchoolForm.controls['logo'].hasError('required')">
+                              Este campo es requerido
+                            </span>
+                          </div>
+                        </div>
+                      </div>       
+                     
+              <div class="row justify-content-center m-4">
+                  <button class="btn btn-success" [disabled]='!addSchoolForm.valid' value="Post Data">Enviar</button>
+              </div>
+              </form>
+      
+    </div>

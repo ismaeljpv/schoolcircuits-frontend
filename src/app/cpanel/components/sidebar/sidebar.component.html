@@ -1,0 +1,31 @@
+ <!-- Sidebar  -->
+ <nav id="sidebar">
+    <ul class="list-unstyled">
+        <li>
+            <a routerLink="users" *ngIf="isAdmin">Usuarios</a>
+        </li>
+        <li>
+            <a routerLink="circuits">Circuitos</a>
+        </li>
+        <li>
+            <a routerLink="schools">Planteles</a>
+        </li>
+        <li>
+            <a routerLink="persons" *ngIf="isSupervisor || isDirector">Personal</a>
+        </li>
+        <li>
+            <a routerLink="events" *ngIf="isSupervisor || isDirector">Eventos</a>
+        </li>
+        <li>
+            <a routerLink="plans" *ngIf="isSupervisor || isDirector">Planes de Acción</a>
+        </li>
+        <li>
+            <a routerLink="matricula">Matriculación</a>
+        </li>
+        <li>
+            <a routerLink="reports">Reportes Especiales</a>
+        </li>
+       
+    </ul>
+
+</nav>

@@ -1,0 +1,76 @@
+
+<div class="container">
+  <h4 class="mb-4">Agregar Nuevo Evento</h4>
+  <form [formGroup]="addEventForm" (ngSubmit)="postData(addEventForm)">
+
+      <div class="form-row">
+          <div class="form-group col-md-6 ">
+              <label>T&iacute;tulo</label>
+              <div>
+                <input formControlName="evento" type="text" class="form-control">
+                <div *ngIf="addEventForm.controls['evento'].touched && !addEventForm.controls['evento'].valid" class="alert alert-danger">
+                  <span *ngIf="addEventForm.controls['evento'].hasError('required')">
+                    Este campo es requerido
+                  </span>
+                </div>
+              </div>
+          </div>
+          <div class="form-group col-md-6 mb-4">
+              <label>Contenido</label>
+              <div>
+                <input formControlName="contenido" type="text" class="form-control">
+                <div *ngIf="addEventForm.controls['contenido'].touched && !addEventForm.controls['contenido'].valid" class="alert alert-danger">
+                  <span *ngIf="addEventForm.controls['contenido'].hasError('required')">
+                    Este campo es requerido
+                  </span>
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class="form-row">
+            <div class="form-group col-md-6 mb-4">
+                <label>Fecha</label>
+                <div>
+                  <input formControlName="fecha" type="date" class="form-control">
+                  <div *ngIf="addEventForm.controls['fecha'].touched && !addEventForm.controls['fecha'].valid" class="alert alert-danger">
+                    <span *ngIf="addEventForm.controls['fecha'].hasError('required')">
+                      Este campo es requerido
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-md-6 mb-4">
+                  <label class="col-form-label"> Circuito </label>
+                  <div class="col-xs-12">
+                    <select class="form-control" formControlName="circuito">
+                      <option disabled="disabled">Seleccionar</option>
+                     <option *ngFor="let circuito of circuitos" value="{{ circuito.idcircuito }}">{{ circuito.nombrecircuital }}</option>
+                    </select>
+                    <div *ngIf="addEventForm.controls['circuito'].touched && !addEventForm.controls['circuito'].valid"  class="alert alert-danger">
+                      <span *ngIf="addEventForm.controls['circuito'].hasError('required')">
+                        Este campo es requerido
+                      </span>
+                    </div>
+                  </div>    
+              </div>
+      </div>
+
+        
+      <div class="form-group mb-4">
+          <div id="preview"></div>
+        <label>Imagen</label>
+        <div>
+          <input formControlName="imagen" type="file" (change)="getimg($event)" accept="image/*">
+          <div *ngIf="addEventForm.controls['imagen'].touched && !addEventForm.controls['imagen'].valid" class="alert alert-danger">
+            <span *ngIf="addEventForm.controls['imagen'].hasError('required')">
+              Este campo es requerido
+            </span>
+          </div>
+        </div>
+      </div>       
+        <div class="row justify-content-center m-4">
+            <button class="btn btn-success" [disabled]='!addEventForm.valid' value="Post Data">Enviar</button>
+        </div>
+        </form>
+
+</div>

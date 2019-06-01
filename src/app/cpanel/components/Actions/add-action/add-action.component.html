@@ -1,0 +1,40 @@
+<div class="container">
+  <h4 class="mb-4">Agregar Nueva Acción</h4>
+  <form [formGroup]="addActionForm" (ngSubmit)="postData(addActionForm)">
+
+      <div class="form-row">
+          <div class="form-group col-md-6 ">
+              <label>Descripción</label>
+              <div>
+                <input formControlName="descripcion" type="text" class="form-control">
+                <div *ngIf="addActionForm.controls['descripcion'].touched && !addActionForm.controls['descripcion'].valid" class="alert alert-danger">
+                  <span *ngIf="addActionForm.controls['descripcion'].hasError('required')">
+                    Este campo es requerido
+                  </span>
+                </div>
+              </div>
+          </div>
+          <div class="form-group col-md-6 mb-4">
+              <label>Total de Participantes</label>
+              <div>
+                <input formControlName="totalParticipantes" type="text" class="form-control" pattern="(100|([1][1-9][0-9][0-9])|([1-9][0-9])|[1-9])">
+                <div *ngIf="addActionForm.controls['totalParticipantes'].touched && !addActionForm.controls['totalParticipantes'].valid" class="alert alert-danger">
+                  <span *ngIf="addActionForm.controls['totalParticipantes'].hasError('required')">
+                    Este campo es requerido
+                  </span>
+                  <span *ngIf="addActionForm.controls['totalParticipantes'].hasError('pattern')">
+                    Rango permitido (0 - 100)
+                  </span>
+                </div>
+              </div>
+            </div>
+        </div>       
+        <div class="row justify-content-center m-4">
+          <button routerLink="../../actions/{{id}}" class="ml-3 btn btn-icon btn-danger _button" style="text-align: left;" title="Volver">
+            <span>Volver</span>
+          </button>  
+          <button class="btn btn-success" [disabled]='!addActionForm.valid' value="Post Data">Enviar</button>
+        </div>
+        </form>
+
+</div>

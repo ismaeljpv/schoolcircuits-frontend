@@ -1,0 +1,49 @@
+<div class="container">
+  <h4 class="mb-4">Actualizar Plan de Acción</h4>
+  <form [formGroup]="updatePlanForm" (ngSubmit)="postData(updatePlanForm)">
+
+      <div class="form-row">
+              <div class="form-group col-md-6 mb-4">
+                      <label>Título</label>
+                      <div>
+                        <input formControlName="titulo" type="text" class="form-control">
+                        <div *ngIf="updatePlanForm.controls['titulo'].touched && !updatePlanForm.controls['titulo'].valid" class="alert alert-danger">
+                          <span *ngIf="updatePlanForm.controls['titulo'].hasError('required')">
+                            Este campo es requerido
+                          </span>
+                        </div>
+                      </div>
+              </div>
+              <div class="form-group col-md-6 mb-4">
+                      <label>Momento</label>
+                      <div>
+                        <input formControlName="momento" type="text" class="form-control">
+                        <div *ngIf="updatePlanForm.controls['momento'].touched && !updatePlanForm.controls['momento'].valid" class="alert alert-danger">
+                          <span *ngIf="updatePlanForm.controls['momento'].hasError('required')">
+                            Este campo es requerido
+                          </span>
+                        </div>
+                      </div>
+              </div>
+           </div>
+        
+          <div class="form-group mb-4">
+            <label class="col-form-label"> Circuito </label>
+            <div class="col-xs-12">
+              <select class="form-control" formControlName="circuito">
+                <option disabled="disabled">Seleccionar</option>
+               <option *ngFor="let circuito of circuitos" value="{{ circuito.idcircuito }}">{{ circuito.nombrecircuital }}</option>
+              </select>
+              <div *ngIf="updatePlanForm.controls['circuito'].touched && !updatePlanForm.controls['circuito'].valid"  class="alert alert-danger">
+                <span *ngIf="updatePlanForm.controls['circuito'].hasError('required')">
+                  Este campo es requerido
+                </span>
+              </div>
+            </div>    
+        </div>
+        <div class="row justify-content-center m-4">
+            <button class="btn btn-success" [disabled]='!updatePlanForm.valid' value="Post Data">Enviar</button>
+        </div>
+        </form>
+
+</div>

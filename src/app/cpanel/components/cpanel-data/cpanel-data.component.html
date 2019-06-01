@@ -1,0 +1,55 @@
+
+ <div class="row bg-title mb-2">
+    <h4 class="page-title">Total de registros</h4>
+</div>
+
+<div class="row">
+    <div class="col-md">
+        <div class="info-box">
+            <span class="info-box-icon bg-aqua"><i class="fas fa-dot-circle"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Circuitos</span>
+                <span class="info-box-number">{{ cantCircuit }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md">
+        <div class="info-box">
+            <span class="info-box-icon  bg-green"><i class="fas fa-school"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Planteles</span>
+                <span class="info-box-number">{{ cantSchool }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md">
+        <div class="info-box">
+            <span class="info-box-icon  bg-red"><i class="fa fa-users"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Usuarios</span>
+                <span class="info-box-number">{{cantUser}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row" style=" justify-content: center;" *ngIf="displaychart">
+    <div class="col-md col-lg-7 _container" >
+        <chart tittle="Estadísticas" 
+        [labels]="arrchartlabels" 
+        [data]="arrchartdata" 
+        type="pie" 
+        [options]="pieChartOptions"
+        [colors]="chartColors"
+        ></chart>
+    </div>
+
+    <div class="col-lg-4 _container">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item titulo">Eventos realizados</li>
+            <li *ngFor="let e of eventos; let i = index" class="list-group-item">{{ e.contenido }}  [{{ e.fechaEvento }}]</li>
+            
+        </ul>
+    </div>
+</div>

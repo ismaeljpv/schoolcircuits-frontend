@@ -1,0 +1,24 @@
+<div id="_modal" class="_modal">
+  <div id="_modal-card" class="_modal-card">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hideModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="row p-4">
+      <div class="col-lg-12">
+        <!-- Nombre del docente -->
+        <ul class="list-group list-group-flush lista">
+          <li class="list-group-item"><b>Plantel: </b>{{school.plantel}}</li>
+          <li class="list-group-item"><b>Codigo Administrativo: </b>{{school.codigoAdmin}}</li>
+          <li class="list-group-item"><b>Codigo Estadistico: </b> {{school.codigoEstadistico}}</li>
+          <li class="list-group-item"><b>Direcci&oacute;n</b> {{school.direccion}}</li>
+          <li class="list-group-item"><b>Registrado en el SIGE: </b>{{school.sige}}</li>
+        </ul>
+      </div>
+      <div class="col-lg-12 button">
+        <button class="btn btn-danger buttons" (click)="hideModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="container">
+     <h4 class="mb-4">Necesidades del Plantel</h4>
+    <form [formGroup]="addNeedForm" >
+  
+       
+      <div class="form-row">
+            <div class="form-group col-md-6 mb-4">
+                <label>Plantel</label>
+                <div>
+                  <input formControlName="plantel" type="text" class="form-control" readonly>
+                  <div *ngIf="addNeedForm.controls['plantel'].touched && !addNeedForm.controls['plantel'].valid" class="alert alert-danger">
+                    <span *ngIf="addNeedForm.controls['plantel'].hasError('required')">
+                      Este campo es requerido
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-md-6 mb-4">
+                <label>Causa</label>
+                <div>
+                  <input formControlName="causa" type="text" class="form-control">
+                  <div *ngIf="addNeedForm.controls['causa'].touched && !addNeedForm.controls['causa'].valid" class="alert alert-danger">
+                    <span *ngIf="addNeedForm.controls['causa'].hasError('required')">
+                      Este campo es requerido
+                    </span>
+                  </div>
+                </div>
+              </div>
+      </div>
+      <div class="form-group mb-4">
+        <label>Situación Actual</label>
+        <div>
+          <textarea formControlName="situacionactual" type="text" class="form-control"></textarea>
+          <div *ngIf="addNeedForm.controls['situacionactual'].touched && !addNeedForm.controls['situacionactual'].valid" class="alert alert-danger">
+            <span *ngIf="addNeedForm.controls['situacionactual'].hasError('required')">
+              Este campo es requerido
+            </span>
+          </div>
+        </div>
+      </div>
+        
+     
+  
+   
+          <div class="row justify-content-center m-4">
+              <button (click)="deleteNeed(idNeeds)" *ngIf="activarBoton" class="btn btn-icon btn-danger" title="Eliminar" style="margin-right: 20px;">
+                  Eliminar
+              </button>
+              <button class="btn btn-success" [disabled]='!addNeedForm.valid' (click)="postData(addNeedForm)">Enviar</button>
+          </div> 
+          </form>
+        </div>

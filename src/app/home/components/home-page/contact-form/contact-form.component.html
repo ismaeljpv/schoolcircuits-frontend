@@ -1,0 +1,51 @@
+
+<!-- Contact Section -->
+<section id="contact" >
+    <div class="container">
+      <h2 class="text-center text-uppercase text-secondary mb-0">Contactanos</h2>
+      <hr class="star-dark mb-5">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <form [formGroup]="contactForm" (ngSubmit)="postData(contactForm)">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Nombre</label>
+                  <input formControlName="nombre" type="text" class="form-control" id="inputEmail4" (keypress)="alphaOnly($event)">
+                  <div *ngIf="contactForm.controls['nombre'].touched && !contactForm.controls['nombre'].valid" class="alert alert-danger">
+                    <span *ngIf="contactForm.controls['nombre'].hasError('required')">
+                      Este campo es requerido
+                    </span>
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4">Correo</label>
+                  <input formControlName="correo" type="email" class="form-control" id="inputPassword4" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
+                  <div *ngIf="contactForm.controls['correo'].touched && !contactForm.controls['correo'].valid" class="alert alert-danger">
+                    <span *ngIf="contactForm.controls['correo'].hasError('required')">
+                      Este campo es requerido
+                    </span>
+                    <span *ngIf="contactForm.controls['correo'].hasError('pattern')">
+                      Email incorrecto
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputAddress">Asunto</label>
+                <input formControlName="asunto" type="text" class="form-control" id="inputAddress">
+              </div>
+              <div class="form-group">
+                <label for="inputAddress2">Mensaje</label>
+                <input formControlName="mensaje" type="text" class="form-control" id="inputAddress2" >
+              </div>
+            
+              <div class="text-center mt-4">
+                  <button type="submit" class="btn btn-primary btn-xl" id="sendMessageButton">Enviar</button>
+                </div>
+       
+            </form>
+        </div>
+      </div>
+    </div>
+    <loading></loading>
+  </section>

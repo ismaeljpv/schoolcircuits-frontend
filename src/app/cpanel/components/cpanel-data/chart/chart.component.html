@@ -1,0 +1,13 @@
+
+<div class="text-center">
+  <h4 class="text-center">{{tittle}}</h4>
+  <canvas baseChart
+        [data]="data"
+        [labels]="labels"
+        [chartType]="type"
+        [options]="options"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)"
+        [colors]="colors"
+        ></canvas>
+</div>

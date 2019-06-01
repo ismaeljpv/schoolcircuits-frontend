@@ -1,0 +1,373 @@
+ <div class="container">
+  <h4 class="mb-4">Agregar Nueva Persona</h4>
+  <form [formGroup]="addPersonForm" (ngSubmit)="postData(addPersonForm)">
+
+   <div class="form-row">
+          <div class="form-group col-md-6 ">
+              <label>Primer Nombre</label>
+              <div>
+                <input formControlName="nombre1" type="text" class="form-control" (keypress)="alphaOnly($event)">
+                <div *ngIf="addPersonForm.controls['nombre1'].touched && !addPersonForm.controls['nombre1'].valid" class="alert alert-danger">
+                  <span *ngIf="addPersonForm.controls['nombre1'].hasError('required')">
+                    Este campo es requerido
+                  </span>
+                </div>
+              </div>
+          </div>
+          <div class="form-group col-md-6 mb-4">
+              <label>Segundo Nombre</label>
+              <div>
+                <input formControlName="nombre2" type="text" class="form-control" (keypress)="alphaOnly($event)">
+                <div *ngIf="addPersonForm.controls['nombre2'].touched && !addPersonForm.controls['nombre2'].valid" class="alert alert-danger">
+                  <span *ngIf="addPersonForm.controls['nombre2'].hasError('required')">
+                    Este campo es requerido
+                  </span>
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class="form-row">
+          <div class="form-group col-md-6 mb-4">
+              <label>Primer Apellido</label>
+              <div>
+                <input formControlName="apellido1" type="text" class="form-control" (keypress)="alphaOnly($event)">
+                <div *ngIf="addPersonForm.controls['apellido1'].touched && !addPersonForm.controls['apellido1'].valid" class="alert alert-danger">
+                  <span *ngIf="addPersonForm.controls['apellido1'].hasError('required')">
+                    Este campo es requerido
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6 mb-4">
+                <label>Segundo Apellido</label>
+                <div>
+                  <input formControlName="apellido2" type="text" class="form-control" (keypress)="alphaOnly($event)">
+                  <div *ngIf="addPersonForm.controls['apellido2'].touched && !addPersonForm.controls['apellido2'].valid" class="alert alert-danger">
+                    <span *ngIf="addPersonForm.controls['apellido2'].hasError('required')">
+                      Este campo es requerido
+                    </span>
+                  </div>
+                </div>
+              </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6 mb-4">
+            <label>Cedula</label>
+            <div>
+              <input formControlName="cedula" type="text" class="form-control" (keypress)="onlyNumbers($event)" minlength="6" maxlength="9" pattern="[0-9]+">
+              <div *ngIf="addPersonForm.controls['cedula'].touched && !addPersonForm.controls['cedula'].valid" class="alert alert-danger">
+                <span *ngIf="addPersonForm.controls['cedula'].hasError('required')">
+                  Este campo es requerido
+                </span>
+                <span *ngIf="addPersonForm.controls['cedula'].hasError('minlength') || addPersontForm.controls['cedula'].hasError('maxlength')">
+                  Longitud Inválida (De 7 a 9 Dígitos)
+                </span>
+                <span *ngIf="addPersonForm.controls['cedula'].hasError('pattern')">
+                  Solo Números
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-6 mb-4">
+              <label>Telefono</label>
+              <div>
+                <input formControlName="telefono" type="text" class="form-control" (keypress)="validatePhoneNumber($event)" pattern="\d{4}[\ ]\d{7}" placeholder="Ej: 0412 1234567">
+                <div *ngIf="addPersonForm.controls['telefono'].touched && !addPersonForm.controls['telefono'].valid" class="alert alert-danger">
+                  <span *ngIf="addPersonForm.controls['telefono'].hasError('required')">
+                    Este campo es requerido
+                  </span>
+                  <span *ngIf="addPersonForm.controls['telefono'].hasError('pattern')">
+                    Telefono Incorrecto
+                  </span>
+                </div>
+              </div>
+            </div>
+    </div>
+      <div class="form-row">
+          <div class="form-group col-md-6 mb-4">
+              <label class="col-form-label"> ¿Es Supervisor Circuital? </label>
+              <div class="col-xs-12">
+                <select class="form-control" formControlName="supervisor">
+                  <option disabled="disabled">Seleccionar</option>
+                  <option value="SI">SI</option>
+                  <option value="NO">NO</option>
+                </select>
+                <div *ngIf="addPersonForm.controls['supervisor'].touched && !addPersonForm.controls['supervisor'].valid"  class="alert alert-danger">
+                  <span *ngIf="addPersonForm.controls['supervisor'].hasError('required')">
+                    Este campo es requerido
+                  </span>
+                </div>
+              </div>    
+          </div>
+
+          <div class="form-group col-md-6 mb-4">
+                      <label class="col-form-label"> Nacionalidad: </label>
+                      <div class="col-xs-12">
+                        <select class="form-control" formControlName="nacionalidad">
+                          <option disabled="disabled">Seleccionar</option>
+                          <option value="V">VENEZOLANO</option>
+                          <option value="E">EXTRANJERO</option>
+                        </select>
+                        <div *ngIf="addPersonForm.controls['nacionalidad'].touched && !addPersonForm.controls['nacionalidad'].valid"  class="alert alert-danger">
+                          <span *ngIf="addPersonForm.controls['nacionalidad'].hasError('required')">
+                            Este campo es requerido
+                          </span>
+                        </div>
+                      </div>    
+                  </div>
+           </div>
+       <div class="form-row">
+             
+              <div class="form-group col-md-6 mb-4">
+                  <label class="col-form-label"> Sexo: </label>
+                  <div class="col-xs-12">
+                    <select class="form-control" formControlName="sexo">
+                      <option disabled="disabled">Seleccionar</option>
+                      <option value="MASCULINO">MASCULINO</option>
+                      <option value="FEMENINO">FEMENINO</option>
+                    </select>
+                    <div *ngIf="addPersonForm.controls['sexo'].touched && !addPersonForm.controls['sexo'].valid"  class="alert alert-danger">
+                      <span *ngIf="addPersonForm.controls['sexo'].hasError('required')">
+                        Este campo es requerido
+                      </span>
+                    </div>
+                  </div>    
+            </div>
+            <div class="form-group col-md-6 mb-4">
+            <label class="col-form-label"> Nivel Acádemico: </label>
+            <div class="col-xs-12">
+              <select class="form-control" formControlName="nivelacadem">
+                <option disabled="disabled">Seleccionar</option>
+                <option value="BACHILLER">BACHILLER</option>
+                <option value="TECNICO MEDIO">TÉCNICO MEDIO</option>
+                <option value="T.S.U.">T.S.U.</option>
+                <option value="UNIVERSITARIO NO COMPLETADO">UNIVERSITARIO NO COMPLETADO</option>
+                <option value="UNIVERSITARIO">UNIVERSITARIO</option>
+                <option value="MAESTRIA">MAESTRIA</option>
+                <option value="DOCTORADO">DOCTORADO</option>
+              </select>
+              <div *ngIf="addPersonForm.controls['nivelacadem'].touched && !addPersonForm.controls['nivelacadem'].valid"  class="alert alert-danger">
+                <span *ngIf="addPersonForm.controls['nivelacadem'].hasError('required')">
+                  Este campo es requerido
+                </span>
+              </div>
+            </div>
+            </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6 mb-4">
+              <label>Dirección</label>
+              <div>
+                <input formControlName="direccion" type="text" class="form-control">
+                <div *ngIf="addPersonForm.controls['direccion'].touched && !addPersonForm.controls['direccion'].valid" class="alert alert-danger">
+                  <span *ngIf="addPersonForm.controls['direccion'].hasError('required')">
+                    Este campo es requerido
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6 mb-4">
+                <label>Correo Electrónico</label>
+                <div>
+                  <input formControlName="correo" type="email" class="form-control" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
+                  <div *ngIf="addPersonForm.controls['correo'].touched && !addPersonForm.controls['correo'].valid" class="alert alert-danger">
+                    <span *ngIf="addPersonForm.controls['correo'].hasError('required')">
+                      Este campo es requerido
+                    </span>
+                    <span *ngIf="addPersonForm.controls['correo'].hasError('pattern')">
+                      Email incorrecto
+                    </span>
+                  </div>
+                </div>
+              </div>
+      </div>
+       <div class="form-row">
+        <div class="form-group col-md-6 mb-4">
+            <label>Fecha de Ingreso</label>
+            <div>
+              <input formControlName="fingreso" type="date" class="form-control">
+              <div *ngIf="addPersonForm.controls['fingreso'].touched && !addPersonForm.controls['fingreso'].valid" class="alert alert-danger">
+                <span *ngIf="addPersonForm.controls['fingreso'].hasError('required')">
+                  Este campo es requerido
+                </span>
+                <span *ngIf="addPersonForm.controls['fingreso'].hasError('notEquivalent')" class="alert alert-danger">
+                  Fecha Inválida
+                </span>
+            
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-6 mb-4">
+              <label>Fecha de Nacimiento</label>
+              <div>
+                <input formControlName="fnacimiento" type="date" class="form-control" min="1900-01-01">
+                <div *ngIf="addPersonForm.controls['fnacimiento'].touched && !addPersonForm.controls['fnacimiento'].valid" class="alert alert-danger">
+                  <span *ngIf="addPersonForm.controls['fnacimiento'].hasError('required')">
+                    Este campo es requerido
+                  </span>
+                  <span *ngIf="addPersonForm.controls['fnacimiento'].hasError('notEquivalent')">
+                    La persona debe ser mayor de edad
+                  </span>
+                </div>
+              </div>
+            </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6 mb-4">
+            <label class="col-form-label"> Cargo Nóminal: </label>
+            <div class="col-xs-12">
+                <select class="form-control" formControlName="cargoNominal">
+                    <option disabled="disabled">Seleccionar</option>
+                    <option value="DOCENTE I">DOCENTE I</option>
+                    <option value="DOCENTE II">DOCENTE II</option>
+                    <option value="DOCENTE III">DOCENTE III</option>
+                    <option value="DOCENTE IV">DOCENTE IV</option>
+                    <option value="DOCENTE V">DOCENTE V</option>
+                    <option value="DOCENTE VI">DOCENTE VI</option>
+                  </select>
+                  <div *ngIf="addPersonForm.controls['cargoNominal'].touched && !addPersonForm.controls['cargoNominal'].valid" class="alert alert-danger">
+                      <span *ngIf="addPersonForm.controls['cargoNominal'].hasError('required')">
+                        Este campo es requerido
+                      </span>
+                  </div>
+            </div>
+            </div>
+     
+            <div class="form-group col-md-6 mb-4">
+                <label class="col-form-label"> Cargo Función: </label>
+                <div class="col-xs-12">
+                    <select class="form-control" formControlName="cargoFuncion">
+                        <option disabled="disabled">Seleccionar</option>
+                        <option value="DIRECTOR(A)">DIRECTOR(A)</option>
+                        <option value="SUB-DIRECTOR(A)">SUB-DIRECTOR(A)</option>
+                        <option value="SECRETARIA">SECRETARIA</option>
+                        <option value="DOCENTE">DOCENTE</option>
+                        <option value="OBRERO(A)">OBRERO(A)</option>
+                        <option value="COCINERO(A)">COCINERO(A)</option>
+                      </select>
+                      <div *ngIf="addPersonForm.controls['cargoFuncion'].touched && !addPersonForm.controls['cargoFuncion'].valid" class="alert alert-danger">
+                          <span *ngIf="addPersonForm.controls['cargoFuncion'].hasError('required')">
+                            Este campo es requerido
+                          </span>
+                      </div>
+                </div>
+                </div>
+  </div>
+  <div class="form-row">
+      <div class="form-group col-md-6 mb-4">
+          <label class="col-form-label"> Estatus: </label>
+          <div class="col-xs-12">
+              <select class="form-control" formControlName="estatus">
+                  <option disabled="disabled">Seleccionar</option>
+                  <option value="ACTIVO">ACTIVO</option>
+                  <option value="ESPECIAL">ESPECIAL</option>
+                  <option value="DESPEDIDO">DESPEDIDO</option>
+                  <option value="RETIRADO">RETIRADO</option>
+                  <option value="JUBILADO">JUBILADO</option>
+                  <option value="INCAPACIDAD">INCAPACIDAD</option>
+                  <option value="RENUNCIA">RENUNCIA</option>
+                </select>
+                <div *ngIf="addPersonForm.controls['estatus'].touched && !addPersonForm.controls['estatus'].valid" class="alert alert-danger">
+                    <span *ngIf="addPersonForm.controls['estatus'].hasError('required')">
+                      Este campo es requerido
+                    </span>
+                </div>
+          </div>
+      </div>
+      <div class="form-group col-md-6 mb-4">
+          <label>Número de Cuenta</label>
+          <div>
+            <input formControlName="digitoscuenta" type="text" class="form-control" placeholder="Últimos 4 Dígitos De La Cuenta Bancaria"  (keypress)="onlyNumbers($event)" minlength="4" maxlength="4" pattern="[0-9]+">
+            <div *ngIf="addPersonForm.controls['digitoscuenta'].touched && !addPersonForm.controls['digitoscuenta'].valid" class="alert alert-danger">
+              <span *ngIf="addPersonForm.controls['digitoscuenta'].hasError('required')">
+                Este campo es requerido
+              </span>
+              <span *ngIf="addPersonForm.controls['digitoscuenta'].hasError('minlength') || addPersonForm.controls['digitoscuenta'].hasError('maxlength')">
+                Longitud Inválida (4 Dígitos Requeridos)
+              </span>
+              <span *ngIf="addPersonForm.controls['digitoscuenta'].hasError('pattern')">
+                Solo Números
+              </span>
+            </div>
+          </div>
+        </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6 mb-4">
+      <label>Serial del Carnet de la Patria</label>
+      <div>
+        <input formControlName="carnetserial" type="text" class="form-control" (keypress)="onlyNumbers($event)" minlength="10" maxlength="10" pattern="[0-9]+">
+        <div *ngIf="addPersonForm.controls['carnetserial'].touched && !addPersonForm.controls['carnetserial'].valid" class="alert alert-danger">
+          <span *ngIf="addPersonForm.controls['carnetserial'].hasError('required')">
+            Este campo es requerido
+          </span>
+          <span *ngIf="addPersonForm.controls['carnetserial'].hasError('minlength') || addPersonForm.controls['carnetserial'].hasError('maxlength')">
+            Longitud Inválida (10 Dígitos Requeridos)
+          </span>
+          <span *ngIf="addPersonForm.controls['carnetserial'].hasError('pattern')">
+            Solo Números
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-md-6 mb-4">
+        <label>Codigo del Carnet de la Patria</label>
+        <div>
+          <input formControlName="carnetcodigo" type="text" class="form-control" (keypress)="onlyNumbers($event)" minlength="10" maxlength="10" pattern="[0-9]+">
+          <div *ngIf="addPersonForm.controls['carnetcodigo'].touched && !addPersonForm.controls['carnetcodigo'].valid" class="alert alert-danger">
+            <span *ngIf="addPersonForm.controls['carnetcodigo'].hasError('required')">
+              Este campo es requerido
+            </span>
+            <span *ngIf="addPersonForm.controls['carnetcodigo'].hasError('minlength') || addPersonForm.controls['carnetcodigo'].hasError('maxlength')">
+              Longitud Inválida (10 Dígitos Requeridos)
+            </span>
+            <span *ngIf="addPersonForm.controls['carnetcodigo'].hasError('pattern')">
+              Solo Números
+            </span>
+          </div>
+        </div>
+      </div>
+</div>
+<div class="form-group mb-4">
+    <label class="col-form-label"> Planteles </label>
+    <div class="col-xs-12">
+      <select class="form-control" formControlName="plantel">
+        <option disabled="disabled">Seleccionar</option>
+       <option *ngFor="let plantel of planteles" value="{{ plantel.idplantel }}">{{ plantel.plantel }}</option>
+      </select>
+      <div *ngIf="addPersonForm.controls['plantel'].touched && !addPersonForm.controls['plantel'].valid"  class="alert alert-danger">
+        <span *ngIf="addPersonForm.controls['plantel'].hasError('required')">
+          Este campo es requerido
+        </span>
+      </div>
+    </div>    
+</div>
+<div class="form-group mb-4">
+    <label>Observaciones</label>
+    <div>
+      <textarea formControlName="observaciones" type="text" class="form-control"></textarea>
+      <div *ngIf="addPersonForm.controls['observaciones'].touched && !addPersonForm.controls['observaciones'].valid" class="alert alert-danger">
+        <span *ngIf="addPersonForm.controls['observaciones'].hasError('required')">
+          Este campo es requerido
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group mb-4">
+    <div id="preview"></div>
+      <label>Foto</label>
+      <div>
+        <input formControlName="foto" type="file" (change)="getimg($event)" accept="image/*">
+        <div *ngIf="addPersonForm.controls['foto'].touched && !addPersonForm.controls['foto'].valid" class="alert alert-danger">
+          <span *ngIf="addPersonForm.controls['foto'].hasError('required')">
+            Este campo es requerido
+          </span>
+        </div>
+      </div>
+    </div>       
+        <div class="row justify-content-center m-4">
+            <button class="btn btn-success" [disabled]='!addPersonForm.valid' value="Post Data">Enviar</button>
+        </div>
+        </form>
+
+</div> 

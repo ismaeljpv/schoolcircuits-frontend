@@ -1,0 +1,41 @@
+<div class="container">
+  <h4 class="mb-4">Asignar Departamento</h4>
+  <form [formGroup]="addDeparmentForm" (ngSubmit)="postData(addDeparmentForm)">
+
+     
+        <div class="form-row">
+            <div class="form-group col-md-6 mb-4">
+                <label>Plan de Acción</label>
+                <div>
+                  <input formControlName="plan" type="text" class="form-control" readonly>
+                  <div *ngIf="addDeparmentForm.controls['plan'].touched && !addDeparmentForm.controls['plan'].valid" class="alert alert-danger">
+                    <span *ngIf="addDeparmentForm.controls['plan'].hasError('required')">
+                      Este campo es requerido
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-md-6 mb-4">
+                <label>Descripción</label>
+                <div>
+                  <input formControlName="descripcion" type="text" class="form-control">
+                  <div *ngIf="addDeparmentForm.controls['descripcion'].touched && !addDeparmentForm.controls['descripcion'].valid" class="alert alert-danger">
+                    <span *ngIf="addDeparmentForm.controls['descripcion'].hasError('required')">
+                      Este campo es requerido
+                    </span>
+                  </div>
+                </div>
+              </div>
+              
+      </div>
+      
+   
+
+        <div class="row justify-content-center m-4">
+          <button routerLink="../../deparment/{{id}}" class="ml-3 btn btn-icon btn-danger _button" style="text-align: left;" title="Volver">
+            <span>Volver</span>
+          </button>
+            <button class="btn btn-success" [disabled]='!addDeparmentForm.valid' value="Post Data">Enviar</button>
+        </div>
+        </form>
+      </div>

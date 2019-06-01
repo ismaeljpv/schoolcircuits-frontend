@@ -1,0 +1,193 @@
+
+<div class="container">
+    <h4 class="mb-4">Agregar Nuevo Circuito</h4>
+    <form [formGroup]="addCircuitForm" (ngSubmit)="postData(addCircuitForm)">
+
+        <div class="form-row">
+            <div class="form-group col-md-6 ">
+                <label>Nombre Circuital</label>
+                <div>
+                  <input formControlName="nombrecircuital" type="text" class="form-control">
+                  <div *ngIf="addCircuitForm.controls['nombrecircuital'].touched && !addCircuitForm.controls['nombrecircuital'].valid" class="alert alert-danger">
+                    <span *ngIf="addCircuitForm.controls['nombrecircuital'].hasError('required')">
+                      Este campo es requerido
+                    </span>
+                  </div>
+                </div>
+            </div>
+            <div class="form-group col-md-6 mb-4">
+                <label>Nro del Circuito</label>
+                <div>
+                  <input formControlName="nro" type="text" class="form-control" pattern="(20|([1-1][0-9])|[1-9])">
+                  <div *ngIf="addCircuitForm.controls['nro'].touched && !addCircuitForm.controls['nro'].valid" class="alert alert-danger">
+                    <span *ngIf="addCircuitForm.controls['nro'].hasError('required')">
+                      Este campo es requerido
+                    </span>
+                    <span *ngIf="addCircuitForm.controls['nro'].hasError('pattern')">
+                      El rango permitido va desde 0 a 30
+                    </span>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6 mb-4">
+                <label>C&oacute;digo Circuital</label>
+                <div>
+                  <input formControlName="codigo" type="text" class="form-control" (keypress)="onlyNumbers($event)" minlength="9" maxlength="9" pattern="[0-9]+">
+                  <div *ngIf="addCircuitForm.controls['codigo'].touched && !addCircuitForm.controls['codigo'].valid" class="alert alert-danger">
+                    <span *ngIf="addCircuitForm.controls['codigo'].hasError('required')">
+                      Este campo es requerido
+                    </span>
+                    <span *ngIf="addCircuitForm.controls['codigo'].hasError('minlength') || addCircuitForm.controls['codigo'].hasError('maxlength')">
+                      Longitud Inválida (9 Dígitos)
+                    </span>
+                    <span *ngIf="addCircuitForm.controls['codigo'].hasError('pattern')">
+                      Solo Números
+                    </span>
+                  </div>
+                 
+                </div>
+              </div>
+              <div class="form-group col-md-6 mb-4">
+                  <label>Lema</label>
+                  <div>
+                    <input formControlName="lema" type="text" class="form-control" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" >
+                    <div *ngIf="addCircuitForm.controls['lema'].touched && !addCircuitForm.controls['lema'].valid" class="alert alert-danger">
+                      <span *ngIf="addCircuitForm.controls['lema'].hasError('required')">
+                        Este campo es requerido
+                      </span>
+                      <span *ngIf="addCircuitForm.controls['lema'].hasError('pattern')">
+                        Solo Letras
+                      </span>
+                    </div>
+                  </div>
+                </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6 mb-4">
+            <label class="col-form-label"> Supervisor Asignado: </label>
+            <div class="col-xs-12">
+              <select class="form-control" formControlName="supervisor">
+                <option disabled="disabled">Seleccionar</option>
+               <option *ngFor="let persona of supervisores" value="{{ persona.idPersona }}">{{ persona.nombre }}</option>
+              </select>
+              <div *ngIf="addCircuitForm.controls['supervisor'].touched && !addCircuitForm.controls['supervisor'].valid"  class="alert alert-danger">
+                <span *ngIf="addCircuitForm.controls['supervisor'].hasError('required')">
+                  Este campo es requerido
+                </span>
+              </div>
+            </div>    
+        </div>
+  
+            <div class="form-group col-md-6 mb-4">
+                        <label class="col-form-label"> Seleccione el Estado: </label>
+                        <div class="col-xs-12">
+                          <select class="form-control" formControlName="estado">
+                            <option disabled="disabled">Seleccionar</option>
+                            <option value="ZULIA">ZULIA</option>
+                          </select>
+                          <div *ngIf="addCircuitForm.controls['estado'].touched && !addCircuitForm.controls['estado'].valid"  class="alert alert-danger">
+                            <span *ngIf="addCircuitForm.controls['estado'].hasError('required')">
+                              Este campo es requerido
+                            </span>
+                          </div>
+                        </div>    
+                    </div>
+             </div>
+         <div class="form-row">
+               
+                <div class="form-group col-md-6 mb-4">
+                    <label class="col-form-label"> Seleccione el Municipio: </label>
+                    <div class="col-xs-12">
+                      <select class="form-control" formControlName="municipio">
+                        <option disabled="disabled">Seleccionar</option>
+                        <option value="MARACAIBO">MARACAIBO</option>
+                      </select>
+                      <div *ngIf="addCircuitForm.controls['municipio'].touched && !addCircuitForm.controls['municipio'].valid"  class="alert alert-danger">
+                        <span *ngIf="addCircuitForm.controls['municipio'].hasError('required')">
+                          Este campo es requerido
+                        </span>
+                      </div>
+                    </div>    
+              </div>
+              <div class="form-group col-md-6 mb-4">
+              <label class="col-form-label"> Seleccione el Parroquia: </label>
+              <div class="col-xs-12">
+                <select class="form-control" formControlName="parroquia">
+                  <option disabled="disabled">Seleccionar</option>
+                  <option value="JUANA DE AVILA">JUANA DE ÁVILA</option>
+                  <option value="CRISTO DE ARANZA">CRISTO DE ARANZA</option>
+                  <option value="ANTONIO BORJAS ROMERO">ANTONIO BORJAS ROMERO</option>
+                  <option value="BOLIVAR">BOLIVAR</option>
+                  <option value="CACIQUE MARA">CACIQUE MARA</option>
+                  <option value="CARACCIOLO PARRA PEREZ">CARACCIOLO PARRA PEREZ</option>
+                  <option value="CECILIO ACOSTA">CECILIO ACOSTA</option>
+                  <option value="COQUIVACOA">COQUIVACOA/option>
+                  <option value="CHIQUINQUIRA">CHIQUINQUIRA</option>
+                  <option value="FRANCISCO EUGENIO BUSTAMANTE">FRANCISCO EUGENIO BUSTAMANTE</option>
+                  <option value="IDELFONSO VAZQUEZ">IDELFONSO VAZQUEZ</option>
+                  <option value="LUIS HURTADO HIGUERA">LUIS HURTADO HIGUERA</option>
+                  <option value="MANUEL DAGNINO">MANUEL DAGNINO</option>
+                  <option value="HOLEGUARIO VILLALOBOS">HOLEGUARIO VILLALOBOS</option>
+                  <option value="RAUL LEONI">RAUL LEONI</option>
+                  <option value="SANTA LUCIA">SANTA LUCIA</option>
+                  <option value="SAN ISIDRO">SAN ISIDRO</option>
+                  <option value="VENANCIO PULGAR">VENANCIO PULGAR</option>
+                </select>
+                <div *ngIf="addCircuitForm.controls['parroquia'].touched && !addCircuitForm.controls['parroquia'].valid"  class="alert alert-danger">
+                  <span *ngIf="addCircuitForm.controls['parroquia'].hasError('required')">
+                    Este campo es requerido
+                  </span>
+                </div>
+              </div>    
+              </div>
+          </div>
+            <div class="form-row">
+              <div class="form-group col-md-6 mb-4">
+                <label class="col-form-label"> Punto y Circulo: </label>
+                <div class="col-xs-12">
+                  <select class="form-control" formControlName="puntoycirculo">
+                    <option disabled="disabled">Seleccionar</option>
+                   <option *ngFor="let school of schools" value="{{ school.plantel }}">{{ school.plantel }}</option>
+                  </select>
+                  <div *ngIf="addCircuitForm.controls['puntoycirculo'].touched && !addCircuitForm.controls['puntoycirculo'].valid"  class="alert alert-danger">
+                    <span *ngIf="addCircuitForm.controls['puntoycirculo'].hasError('required')">
+                      Este campo es requerido
+                    </span>
+                  </div>
+                </div>    
+            </div>
+            <div class="form-group col-md-6 mb-4">
+              <label class="col-form-label"> N&uacute;mero de Planteles </label>
+              <div>
+                <input formControlName="nroplanteles" type="text" class="form-control" pattern="(20|([1-1][0-9])|[1-9])"/>
+                <div *ngIf="addCircuitForm.controls['nroplanteles'].touched && !addCircuitForm.controls['nroplanteles'].valid" class="alert alert-danger">
+                  <span *ngIf="addCircuitForm.controls['nroplanteles'].hasError('required')">
+                    Este campo es requerido
+                  </span>
+                  <span *ngIf="addCircuitForm.controls['nroplanteles'].hasError('pattern')">
+                    El rango permitido va desde 0 a 20 planteles
+                  </span>
+                </div>
+              </div>
+          </div>
+            </div>
+        <div class="form-group mb-4">
+          <label>Imagen de Georeferenciación</label>
+          <div>
+            <input formControlName="imagengeoref" type="file" (change)="getimg($event)" accept="image/*">
+            <div *ngIf="addCircuitForm.controls['imagengeoref'].touched && !addCircuitForm.controls['imagengeoref'].valid" class="alert alert-danger">
+              <span *ngIf="addCircuitForm.controls['imagengeoref'].hasError('required')">
+                Este campo es requerido
+              </span>
+            </div>
+            <div id="preview" style="text-align: center;"></div>
+          </div>
+        </div>       
+          <div class="row justify-content-center m-4">
+              <button class="btn btn-success" [disabled]='!addCircuitForm.valid' value="Post Data">Enviar</button>
+          </div>
+          </form>
+  
+</div>

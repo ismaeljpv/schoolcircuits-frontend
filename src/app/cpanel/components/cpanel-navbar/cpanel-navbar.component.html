@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+  <button id="hide" class="botonSidebar" (click)="hideSide()" style="display:none;"><i class="fa fa-bars menuIcon"></i></button>
+  <button id="show" class="botonSidebar Show" (click)="showSide()"><i class="fa fa-bars menuIcon"></i></button>   
+<div class="navbar-brand"> <img src="../../../../assets/image/log.png" alt="RedMaracaibo7" style="width:180px; z-index: 400;"> </div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fa fa-user"></i>
+  </button>
+<div class="navbar-collapse collapse" id="navbarSupportedContent">
+  <ul class="navbar-nav ml-auto">
+      <a id="dd_user" class="dropdown-toggle nav-link show-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>&nbsp;&nbsp;{{user.usuario}}</a>
+    <li class="nav-item dropdown">
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd_user">
+        <a class="dropdown-item show-pointer" routerLink="perfil-admin"  routerLinkActive="active">Perfil</a>
+        <a class="dropdown-item show-pointer" (click)="signOut()">Cerrar sesión</a>
+        
+      </div>
+    </li>
+  </ul>
+</div>
+</nav>

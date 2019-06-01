@@ -1,0 +1,41 @@
+export const persons = [
+    {   "id":1,
+        "cedula":"25941662",
+        "nombre1":"Ismael",
+        "nombre2":"Jesus",
+        "apellido1":"Peña",
+        "apellido2":"viloria",
+        "estatus":"Activo",
+        "cargo":"Director"
+    },
+    {
+        "id":2,
+        "cedula":"26653608",
+        "nombre1":"Cristian",
+        "nombre2":"Jesus",
+        "apellido1":"Vargas",
+        "apellido2":"Peña",
+        "estatus":"Activo",
+        "cargo":"Docente"
+    },
+    {
+        "id":3,
+        "cedula":"12941662",
+        "nombre1":"Demin",
+        "nombre2":"Alberto",
+        "apellido1":"Santana",
+        "apellido2":"Huerta",
+        "estatus":"Retirado",
+        "cargo":"Administrativo"
+    },
+    {   
+        "id":4,
+        "cedula":"7661662",
+        "nombre1":"Jose",
+        "nombre2":"Luis",
+        "apellido1":"Oropeza",
+        "apellido2":"L.",
+        "estatus":"Retirado",
+        "cargo":"Supervisor"
+    }
+];

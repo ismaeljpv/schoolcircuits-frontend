@@ -1,0 +1,142 @@
+<div class="container">
+  <h4 class="mb-4">Actualizar Matricula</h4>
+  <form [formGroup]="updateMatriculaForm" (ngSubmit)="postData(updateMatriculaForm)">
+  
+    <div class="form-group mb-4">
+      <label class="col-form-label"> Planteles </label>
+      <div class="col-xs-12">
+        <select class="form-control" formControlName="plantel">
+          <option disabled="disabled">Seleccionar</option>
+         <option *ngFor="let plantel of planteles" value="{{ plantel.idplantel }}">{{ plantel.plantel }}</option>
+        </select>
+        <div *ngIf="updateMatriculaForm.controls['plantel'].touched && !updateMatriculaForm.controls['plantel'].valid"  class="alert alert-danger">
+          <span *ngIf="updateMatriculaForm.controls['plantel'].hasError('required')">
+            Este campo es requerido
+          </span>
+        </div>
+      </div>    
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6 mb-4">
+      <label class="col-form-label"> Niveles </label>
+      <div class="col-xs-12">
+
+        <select class="form-control" formControlName="niveles">
+            <option disabled="disabled">Seleccionar</option>
+            <option value="INICIAL">INICIAL</option>
+            <option value="PRIMARIA">PRIMARIA</option>
+            <option value="MEDIA GENERAL">MEDIA GENERAL</option>
+        </select>
+        
+      </div>
+      <div *ngIf="updateMatriculaForm.controls['niveles'].touched && !updateMatriculaForm.controls['niveles'].valid" class="alert alert-danger">
+        <span *ngIf="updateMatriculaForm.controls['niveles'].hasError('required')">
+          Este campo es requerido
+        </span>
+      </div>    
+    </div>
+
+      <div class="form-group col-md-6 mb-4">
+        <label class="col-form-label"> Grado </label>
+        <div class="col-xs-12">
+
+          <select class="form-control" formControlName="grado">
+              <option disabled="disabled">Seleccionar</option>
+              <option value="MATERNAL">MATERNAL</option>
+              <option value="SALA 3">SALA 3</option>
+              <option value="SALA 4">SALA 4</option>
+              <option value="SALA 5">SALA 5</option>
+              <option value="1ER GRADO">1ER GRADO</option>
+              <option value="2DO GRADO">2DO GRADO</option>
+              <option value="3ER GRADO">3ER GRADO</option>
+              <option value="5TO GRADO">5TO GRADO</option>
+              <option value="6TO GRADO">6TO GRADO</option>
+              <option value="1ER AÑO">1ER AÑO</option>
+              <option value="2DO AÑO">2DO AÑO</option>
+              <option value="3ER AÑO">3ER AÑO</option>
+              <option value="4TO AÑO">4TO AÑO</option>
+              <option value="5TO AÑO">5TO AÑO</option>
+          </select>
+          
+        </div>  
+        <div *ngIf="updateMatriculaForm.controls['grado'].touched && !updateMatriculaForm.controls['grado'].valid" class="alert alert-danger">
+          <span *ngIf="updateMatriculaForm.controls['grado'].hasError('required')">
+            Este campo es requerido
+          </span>
+        </div>      
+      </div>
+
+  
+  </div>
+    <div class="form-row">
+        <div class="form-group col-md-6 ">
+            <label>Cantidad de Aulas</label>
+            <div>
+              <input formControlName="aulas" type="text" class="form-control" pattern="(100|([1][1-9][0-9][0-9])|([1-9][0-9])|[1-9])">
+              <div *ngIf="updateMatriculaForm.controls['aulas'].touched && !updateMatriculaForm.controls['aulas'].valid" class="alert alert-danger">
+                <span *ngIf="updateMatriculaForm.controls['aulas'].hasError('required')">
+                  Este campo es requerido
+                </span>
+                <span *ngIf="updateMatriculaForm.controls['aulas'].hasError('pattern')">
+                  Rango permitido (1 - 100)
+                </span>
+              </div>    
+            </div>
+        </div>
+        <div class="form-group col-md-6 ">
+          <label>Cantidad de Secciones</label>
+          <div>
+            <input formControlName="secciones" type="number" class="form-control" pattern="(100|([1][1-9][0-9][0-9])|([1-9][0-9])|[1-9])">
+            <div *ngIf="updateMatriculaForm.controls['secciones'].touched && !updateMatriculaForm.controls['secciones'].valid" class="alert alert-danger">
+              <span *ngIf="updateMatriculaForm.controls['secciones'].hasError('required')">
+                Este campo es requerido
+              </span>
+              <span *ngIf="updateMatriculaForm.controls['secciones'].hasError('pattern')">
+                Rango permitido (1 - 100)
+              </span>
+            </div>    
+          </div>
+      </div>
+    </div>
+    
+    <div class="form-row">
+      <div class="form-group col-md-6 ">
+          <label>Cantidad de Varones</label>
+          <div>
+            <input formControlName="varones" type="text" class="form-control" pattern="(100|([1][1-9][0-9][0-9])|([1-9][0-9])|[1-9])">
+            <div *ngIf="updateMatriculaForm.controls['varones'].touched && !updateMatriculaForm.controls['varones'].valid" class="alert alert-danger">
+              <span *ngIf="updateMatriculaForm.controls['varones'].hasError('required')">
+                Este campo es requerido
+              </span>
+              <span *ngIf="updateMatriculaForm.controls['varones'].hasError('pattern')">
+                Rango permitido (1 - 100)
+              </span>
+            </div>    
+          </div>
+      </div>
+      <div class="form-group col-md-6 ">
+          <label>Cantidad de Hembras</label>
+          <div>
+            <input formControlName="hembras" type="text" class="form-control" pattern="(100|([1][1-9][0-9][0-9])|([1-9][0-9])|[1-9])" >
+            <div *ngIf="updateMatriculaForm.controls['hembras'].touched && !updateMatriculaForm.controls['hembras'].valid" class="alert alert-danger">
+              <span *ngIf="updateMatriculaForm.controls['hembras'].hasError('required')">
+                Este campo es requerido
+              </span>
+              <span *ngIf="updateMatriculaForm.controls['hembras'].hasError('pattern')">
+                Rango permitido (1 - 100)
+              </span>
+            </div>    
+          </div>
+      </div>
+  </div>
+  
+           
+    <div class="row justify-content-center m-4">
+        <button class="btn btn-success" [disabled]='!updateMatriculaForm.valid' value="Post Data">Enviar</button>
+    </div>
+      
+  </form>
+
+</div>
+

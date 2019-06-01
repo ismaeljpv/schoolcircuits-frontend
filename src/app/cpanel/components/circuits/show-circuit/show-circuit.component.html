@@ -1,0 +1,32 @@
+<div id="_modal" class="_modal">
+  <div id="_modal-card" class="_modal-card">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hideModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row p-4">
+        <div class="col-lg-12">
+            <div id="preview" style="text-align: center;"></div>
+
+        <!-- Nombre del docente -->
+        <ul class="list-group list-group-flush lista">
+          <li class="list-group-item"><b>Circuito: </b>{{circuit.circuito}}</li>
+          <li class="list-group-item"><b>Codigo: </b>{{circuit.codigo}}</li>
+          <li class="list-group-item"><b>Punto y círculo: </b> {{circuit.puntoycirculo}}</li>
+          <li class="list-group-item"><b>N° plantel: </b>{{circuit.nro_planteles}}</li>
+          <li class="list-group-item"><b>Supervisor: </b>{{circuit.supervisor}}</li>
+          <li class="list-group-item"><b>Estado: </b>{{circuit.estado}}</li>
+          <li class="list-group-item"><b>Parroquia: </b>{{circuit.parroquia}}</li>
+          <li class="list-group-item"><b>Municipio: </b>{{circuit.municipio}}</li>
+        </ul>
+      </div>
+      <div class="col-lg-12 button">
+        <button class="btn btn-danger buttons" (click)="hideModal()">Cerrar</button>
+      </div>
+    </div>
+    </div>
+    
+  </div>
+</div>
